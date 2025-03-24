@@ -51,7 +51,4 @@ workflow SINGLE_END {
         SICKLE_FASTQC(ch_for_sickle_fastqc)
 
 
-    emit:
-        ch_trimmed_fastq    =  FASTP.out.trimmed_fastq  //   channel: [ val(sample), fastq_1, fastq_2]
-
 }
