@@ -1,6 +1,6 @@
 process FASTP_PE {
     label 'verylow'
-	container 'biocontainers/fastp:v0.20.1_cv1'
+	container 'ebird013/fastp:latest'
 
     input:
         tuple val(sample), file(R1), file(R2)
@@ -29,16 +29,16 @@ process FASTP_PE {
 }
 
 process FASTP_SE {
-    label 'verylow'
-    container 'biocontainers/fastp:v0.20.1_cv1'
+    label 'lowmem'
+    container 'ebird013/fastp:latest'
 
     input:
         tuple val(sample), file(R1), file(adapter_fasta)
 
     output:
-        tuple val(sample), path("${sample}_R1.fq.gz"), emit: trimmed_fastq
-        tuple val(sample), path("${sample}.fastp.html"), emit: fastp_html
-        tuple val(sample), path("${sample}.fastp.json"), emit: fastp_json
+        tuple val(sample), path("${sample}_R1.fq.gz"), emit: trim
+        tuple val(sample), path("${sample}.fastp.html"), emit: html
+        tuple val(sample), path("${sample}.fastp.json"), emit: json
         path("versions.yml"), emit: versions
 
 

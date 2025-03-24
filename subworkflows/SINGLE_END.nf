@@ -8,8 +8,8 @@ params.fastp_q  = Q score for trimming
 
 
 include { FASTQC_SE as RAW_FASTQC } from '../modules/FASTQC.nf'
-//include { FASTP_SE as FASTP } from '../modules/FASTP.nf'
-//include { FASTQC_SE as FASTP_FASTQC } from '../modules/FASTQC.nf'
+include { FASTP_SE as FASTP } from '../modules/FASTP.nf'
+include { FASTQC_SE as FASTP_FASTQC } from '../modules/FASTQC.nf'
 //include { SCYTHE_SE as SCYTHE } from '../modules/SCYTHE.nf'
 //include { FASTQC_SE as SCYTHE_FASTQC } from '../modules/FASTQC.nf'
 //include { CUTADAPT_SE as CUTADAPT } from '../modules/CUTADAPT.nf'
@@ -46,9 +46,14 @@ workflow SINGLE_END {
         ch_for_bbduk_fastqc = BBDUK.out.trim.combine(ch_adapter_tsv)
         BBDUK_FASTQC(ch_for_bbduk_fastqc)
 
-        SICKLE(BBDUK.out.trim)
-        ch_for_sickle_fastqc = SICKLE.out.trim.combine(ch_adapter_tsv)
-        SICKLE_FASTQC(ch_for_sickle_fastqc)
+        //SICKLE(BBDUK.out.trim)
+        //ch_for_sickle_fastqc = SICKLE.out.trim.combine(ch_adapter_tsv)
+        //SICKLE_FASTQC(ch_for_sickle_fastqc)
+
+        ch_for_fastp = BBDUK.out.trim.combine(ch_adapter_fasta)
+        FASTP(ch_for_fastp)
+        ch_for_fastp_fastqc = FASTP.out.trim.combine(ch_adapter_tsv)
+        FASTP_FASTQC(ch_for_fastp_fastqc)
 
 
 }
