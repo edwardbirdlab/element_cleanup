@@ -8,13 +8,13 @@ module_order:
 # SR QC Only Order
 - fastqc:
     name: FastQC (Raw_Reads)
-    path_filters: ELEMENT_CLEANUP_SE/SINGLE_END/RAW_FASTQC/*_fastqc.zip
+    path_filters: ELEMENT_CLEANUP_SE/SINGLE_END/RAW_FASTQC/*/*_fastqc.zip
 - fastqc:
     name: FastQC (BBDuk Trim)
-    path_filters: ELEMENT_CLEANUP_SE/SINGLE_END/BBDUK_FASTQC/*_fastqc.zip
+    path_filters: ELEMENT_CLEANUP_SE/SINGLE_END/BBDUK_FASTQC/*/*_fastqc.zip
 - fastp:
     name: FastP
     path_filters: ELEMENT_CLEANUP_SE/SINGLE_END/FASTP/*.json
 - fastqc:
     name: FastQC (FastP Trim)
-    path_filters: ELEMENT_CLEANUP_SE/SINGLE_END/FASTP_FASTQC/*_fastqc.zip
+    path_filters: ELEMENT_CLEANUP_SE/SINGLE_END/FASTP_FASTQC/*/*_fastqc.zip
