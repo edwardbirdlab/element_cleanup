@@ -1,5 +1,5 @@
 process BBDUK_SE {
-    label 'verylow'
+    label 'lowmem'
 	container 'ebird013/bbmap:latest'
 
     input:
