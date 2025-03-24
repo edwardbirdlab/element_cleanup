@@ -26,8 +26,8 @@ workflow SINGLE_END {
         ch_fastqs                                          // channel: [val(sample), [fastq_1, fastq_2]]
     main:
 
-        ch_adapter_fasta = file(params.adapter_fasta)
-        ch_adapter_tsv = file(params.adapter_tsv)
+        ch_adapter_fasta = file(params.adapters_fasta)
+        ch_adapter_tsv = file(params.adapters_tsv)
 
 
         RAW_FASTQC(ch_fastqs)
