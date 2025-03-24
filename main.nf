@@ -29,7 +29,7 @@ if (params.workflow_opt == 'cleaup_se') {
 
     }
 
-include { ELEMENT_CLEANUP as ELEMENT_CLEANUP } from './workflows/ELEMENT_CLEANUP.nf'
+include { SINGLE_END as SINGLE_END } from './workflows/SINGLE_END.nf'
 include { MULTIQC as MULTIQC } from './workflows/MULTIQC.nf'
 
 workflow {

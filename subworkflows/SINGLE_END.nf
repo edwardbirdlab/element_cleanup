@@ -21,7 +21,7 @@ include { FASTQC_SE as SICKLE_FASTQC } from '../modules/FASTQC.nf'
 
 
 
-workflow ELEMENT_CLEANUP_SW {
+workflow SINGLE_END {
     take:
         ch_fastqs                                          // channel: [val(sample), [fastq_1, fastq_2]]
     main:
