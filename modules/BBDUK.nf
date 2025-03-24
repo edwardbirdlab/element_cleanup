@@ -5,8 +5,8 @@ process BBDUK_SE {
     input:
         tuple val(sample), file(R1), file(adapter_fasta)
     output:
-	    tuple val(sample), path(${sample}_filt.fastq.gz), emit: trim
-        tuple val(sample), path(${sample}_bbduk_stats.txt), emit: stats
+	    tuple val(sample), path("${sample}_filt.fastq.gz"), emit: trim
+        tuple val(sample), path("${sample}_bbduk_stats.txt"), emit: stats
         path("versions.yml"), emit: versions
 
 
@@ -19,6 +19,6 @@ process BBDUK_SE {
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         bbmap: \$(bbmap.sh version 2>&1 | grep "BBMap version" | sed -e "s/BBMap version //g")
-    END_VERSIONS  
+    END_VERSIONS
     """
 }
