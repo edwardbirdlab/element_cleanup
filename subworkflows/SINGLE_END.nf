@@ -44,7 +44,7 @@ workflow SINGLE_END {
         ch_for_bbduk = ch_fastqs.join(ch_adapter_fasta)
         BBDUK(ch_for_bbduk)
         ch_for_bbduk_fastqc = BBDUK.out.trim.join(ch_adapter_tsv)
-        BBDUK_FASTQC(ch_for_fastqc)
+        BBDUK_FASTQC(ch_for_bbduk_fastqc)
 
         SICKLE(BBDUK.out.trim)
         ch_for_sickle_fastqc = SICKLE.out.trim.join(ch_adapter_tsv)
