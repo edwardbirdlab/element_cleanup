@@ -27,10 +27,12 @@ workflow SINGLE_END {
     main:
 
         ch_adapter_fasta = Channel.fromPath(params.adapters_fasta)
+        ch_adapter_fasta.view()
         ch_adapter_tsv = Channel.fromPath(params.adapters_tsv)
+        ch_adapter_tsv.view()
 
-
-        RAW_FASTQC(ch_fastqs)
+        ch_for_raw_fastqc = ch_fastqs.out.trim.join(ch_adapter_tsv)
+        RAW_FASTQC(ch_for_raw_fastqc)
 
         //FASTP(ch_fastqs)
         //FASTP_FASTQC(FASTP.out.trimmed_fastq)
