@@ -30,6 +30,7 @@ if (params.workflow_opt == 'cleaup_se') {
     }
 
 include { ELEMENT_CLEANUP_SE as ELEMENT_CLEANUP_SE } from './workflows/ELEMENT_CLEANUP_SE.nf'
+include { ELEMENT_CLEANUP_PE as ELEMENT_CLEANUP_PE } from './workflows/ELEMENT_CLEANUP_PE.nf'
 include { MULTIQC as MULTIQC } from './workflows/MULTIQC.nf'
 
 workflow {
@@ -37,6 +38,12 @@ workflow {
     if (params.workflow_opt == 'cleaup_se') {
 
         ELEMENT_CLEANUP_SE(ch_fastq)
+
+        }
+
+    if (params.workflow_opt == 'cleaup_pe') {
+
+        ELEMENT_CLEANUP_PE(ch_fastq)
 
         }
 
