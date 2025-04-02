@@ -18,3 +18,16 @@ module_order:
 - fastqc:
     name: FastQC (FastP Trim)
     path_filters: ELEMENT_CLEANUP_SE/SINGLE_END/FASTP_FASTQC/*/*_fastqc.zip
+
+- fastqc:
+    name: FastQC (Raw_Reads)
+    path_filters: ELEMENT_CLEANUP_PE/PAIRED_END/RAW_FASTQC/*/*_fastqc.zip
+- fastqc:
+    name: FastQC (BBDuk Trim)
+    path_filters: ELEMENT_CLEANUP_PE/PAIRED_END/BBDUK_FASTQC/*/*_fastqc.zip
+- fastp:
+    name: FastP
+    path_filters: ELEMENT_CLEANUP_PE/PAIRED_END/FASTP/*.json
+- fastqc:
+    name: FastQC (FastP Trim)
+    path_filters: ELEMENT_CLEANUP_PE/PAIRED_END/FASTP_FASTQC/*/*_fastqc.zip
