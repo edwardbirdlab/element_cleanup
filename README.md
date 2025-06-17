@@ -5,7 +5,7 @@ While a default contaminant FASTA is included, it is highly recommended to eithe
 
 # Running `element_cleanup`
 
-`element_cleanup` is supplied with a configuration file optimized for the SciNet Ceres cluster.
+`element_cleanup` is supplied with a configuration file optimized for the SciNet Ceres cluster. Any nf-core configuration should be a direct substitution.
 
 > ⚠️ **Note:** This pipeline currently supports only **paired-end** data. If you would like to use single-end data, please submit a ticket.
 
