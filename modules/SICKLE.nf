@@ -1,6 +1,6 @@
 process SICKLE_SE {
     label 'verylow'
-	container 'docker://ebird013/sickle:latest'
+	container 'ebird013/sickle:latest'
 
     input:
         tuple val(sample), file(R1)
