@@ -35,13 +35,13 @@ include { MULTIQC as MULTIQC } from './workflows/MULTIQC.nf'
 
 workflow {
 
-    if (params.workflow_opt == 'cleaup_se') {
+    if (params.workflow_opt == 'cleansup_se') {
 
         ELEMENT_CLEANUP_SE(ch_fastq)
 
         }
 
-    if (params.workflow_opt == 'cleaup_pe') {
+    if (params.workflow_opt == 'cleanup_pe') {
 
         ELEMENT_CLEANUP_PE(ch_fastq)
 
