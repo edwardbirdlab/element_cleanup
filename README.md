@@ -30,4 +30,9 @@ nextflow run element_cleanup/ -c element_cleanup/configs/ceres/ceres.cfg \
     --project_name Project_Name \
     --sample_sheet /full/path/to/samplesheet.csv \
     --workflow_opt cleanup_pe
+
+nextflow run element_cleanup/ -c element_cleanup/configs/ceres/ceres.cfg \
+    --project_name Project_Name \
+    --sample_sheet /full/path/to/samplesheet.csv \
+    --workflow_opt multiqc
 ```
