@@ -13,7 +13,7 @@ https://github.com/edwardbirdlab/element_cleanup
 */
 nextflow.enable.dsl=2
 
-if (params.workflow_opt == 'cleaup_pe') {
+if (params.workflow_opt == 'cleanup_pe') {
 
     ch_fastq = Channel.fromPath(params.sample_sheet) \
         | splitCsv(header:true) \
@@ -21,7 +21,7 @@ if (params.workflow_opt == 'cleaup_pe') {
 
     }
 
-if (params.workflow_opt == 'cleaup_se') {
+if (params.workflow_opt == 'cleanup_se') {
 
     ch_fastq = Channel.fromPath(params.sample_sheet) \
         | splitCsv(header:true) \
