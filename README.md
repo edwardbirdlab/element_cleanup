@@ -7,7 +7,6 @@ While a default contaminant FASTA is included, it is highly recommended to eithe
 
 `element_cleanup` is supplied with a configuration file optimized for the SciNet Ceres cluster. Any nf-core configuration should be a direct substitution.
 
-> ⚠️ **Note:** This pipeline currently supports only **paired-end** data. If you would like to use single-end data, please submit a ticket.
 
 ---
 
@@ -30,6 +29,11 @@ nextflow run element_cleanup/ -c element_cleanup/configs/ceres/ceres.cfg \
     --project_name Project_Name \
     --sample_sheet /full/path/to/samplesheet.csv \
     --workflow_opt cleanup_pe
+
+nextflow run element_cleanup/ -c element_cleanup/configs/ceres/ceres.cfg \
+    --project_name Project_Name \
+    --sample_sheet /full/path/to/samplesheet.csv \
+    --workflow_opt cleanup_se
 
 nextflow run element_cleanup/ -c element_cleanup/configs/ceres/ceres.cfg \
     --project_name Project_Name \
