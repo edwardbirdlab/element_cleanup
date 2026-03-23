@@ -19,8 +19,8 @@ process HOST_REMOVAL_SE {
 
     output:
         tuple val(sample), path("${sample}_spike_removed_R1.fastq.gz"), emit: cleaned_reads
-        path("${sample}_bowtie2_spike.log"), emit: log
-        path("${sample}_spike_stats.tsv"),   emit: stats
+        path("${sample}_bowtie2_align.log"), emit: log
+        path("${sample}_align_stats.tsv"),   emit: stats
         path("versions.yml"),                emit: versions
 
     script:
@@ -37,15 +37,15 @@ process HOST_REMOVAL_SE {
         -x ${idx_base} \\
         -U ${r1} \\
         --very-sensitive \\
-        2> ${sample}_bowtie2_spike.log \\
+        2> ${sample}_bowtie2_align.log \\
     | samtools view -b -f 12 -F 256 - \\
     | samtools sort -n -m ${task.memory.toGiga()}G -@ ${task.cpus} - \\
     | samtools fastq -@ ${task.cpus} - \\
         -1 ${sample}_spike_removed_R1.fastq.gz
 
-    # Parse spike-in stats from bowtie2 log (stderr)
-    TOTAL=\$(grep -m1 'reads; of these' ${sample}_bowtie2_spike.log | awk '{print \$1}' || true)
-    RATE=\$(grep 'overall alignment rate' ${sample}_bowtie2_spike.log | awk '{print \$1}' || true)
+    # Parse alignment stats from bowtie2 log (stderr)
+    TOTAL=\$(grep -m1 'reads; of these' ${sample}_bowtie2_align.log | awk '{print \$1}' || true)
+    RATE=\$(grep 'overall alignment rate' ${sample}_bowtie2_align.log | awk '{print \$1}' || true)
 
     # Guard against empty input (0 reads)
     if [ -z "\${TOTAL}" ] || [ "\${TOTAL}" -eq 0 ] 2>/dev/null; then
@@ -57,8 +57,8 @@ process HOST_REMOVAL_SE {
         MAPPED=\$(awk "BEGIN {printf \\"%d\\", (\${RATE_NUM}/100)*\${TOTAL}}")
     fi
 
-    echo -e "sample\\ttotal_read_pairs\\tspike_in_pairs\\talignment_rate" > ${sample}_spike_stats.tsv
-    echo -e "${sample}\\t\${TOTAL}\\t\${MAPPED}\\t\${RATE}" >> ${sample}_spike_stats.tsv
+    echo -e "sample\\ttotal_reads\\tmapped_pairs\\talignment_rate" > ${sample}_align_stats.tsv
+    echo -e "${sample}\\t\${TOTAL}\\t\${MAPPED}\\t\${RATE}" >> ${sample}_align_stats.tsv
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
