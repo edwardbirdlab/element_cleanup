@@ -17,6 +17,6 @@ workflow ELEMENT_CLEANUP_SE {
 
 
         if (params.run_host_removal) {
-            SPIKE_IN_REMOVAL(SINGLE_END.out.clean_fqs, ch_bt2_index)
+            HOST_REMOVAL_SE(SINGLE_END.out.clean_fqs, ch_bt2_index)
         }
 }
