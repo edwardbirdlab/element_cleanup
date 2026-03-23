@@ -40,7 +40,7 @@ ch_bt2_index = params.run_host_removal && params.bt2_dir
 
 workflow {
 
-    if (params.workflow_opt == 'cleansup_se') {
+    if (params.workflow_opt == 'cleanup_se') {
 
         ELEMENT_CLEANUP_SE(ch_fastq, ch_bt2_index)
 
