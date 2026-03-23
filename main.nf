@@ -33,11 +33,16 @@ include { ELEMENT_CLEANUP_SE as ELEMENT_CLEANUP_SE } from './workflows/ELEMENT_C
 include { ELEMENT_CLEANUP_PE as ELEMENT_CLEANUP_PE } from './workflows/ELEMENT_CLEANUP_PE.nf'
 include { MULTIQC as MULTIQC } from './workflows/MULTIQC.nf'
 
+// Bowtie2 index channel
+ch_spike_in_bt2 = params.run_spike_in && params.spike_in_bt2
+    ? Channel.fromPath(params.spike_in_bt2, checkIfExists: true).first()
+    : Channel.value([])
+
 workflow {
 
     if (params.workflow_opt == 'cleansup_se') {
 
-        ELEMENT_CLEANUP_SE(ch_fastq)
+        ELEMENT_CLEANUP_SE(ch_fastq, ch_spike_in_bt2)
 
         }
 
