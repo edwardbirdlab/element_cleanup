@@ -11,13 +11,12 @@ include { HOST_REMOVAL_SE          } from '../modules/HOST_REMOVAL_SE'
 workflow ELEMENT_CLEANUP_SE {
     take:
         fastqs_short_raw      //    channel: [val(sample), file(fastq)]
-        ch_spike_in_bt2       //    path to pre-built Bowtie2 index directory (value channel)
-
+        ch_bt2_index          //    path to pre-built Bowtie2 index directory (value channel)
     main:
         SINGLE_END(fastqs_short_raw)
 
 
-        if (params.run_spike_in) {
-            SPIKE_IN_REMOVAL(SINGLE_END.out.clean_fqs, ch_spike_in_bt2)
+        if (params.run_host_removal) {
+            SPIKE_IN_REMOVAL(SINGLE_END.out.clean_fqs, ch_bt2_index)
         }
 }

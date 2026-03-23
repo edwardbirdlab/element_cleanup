@@ -15,7 +15,7 @@ process HOST_REMOVAL_SE {
 
     input:
         tuple val(sample), path(r1)
-        path(bt2_index)    // directory and prefeix of *.bt2 files
+        path(bt2_index)    // directory of *.bt2 files
 
     output:
         tuple val(sample), path("${sample}_spike_removed_R1.fastq.gz"), emit: cleaned_reads
@@ -23,6 +23,8 @@ process HOST_REMOVAL_SE {
         path("${sample}_spike_stats.tsv"),   emit: stats
         path("versions.yml"),                emit: versions
 
+    script:
+    def idx_base = "${bt2_index}/${params.bt2_prefix}"
     """
     set -o pipefail
 
@@ -32,7 +34,7 @@ process HOST_REMOVAL_SE {
     # -F 256: exclude secondary alignments
     bowtie2 \\
         -p ${task.cpus} \\
-        -x ${bt2_index} \\
+        -x ${idx_base} \\
         -1 ${r1} \\
         --very-sensitive \\
         2> ${sample}_bowtie2_spike.log \\
