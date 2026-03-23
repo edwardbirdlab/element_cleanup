@@ -2,6 +2,7 @@ run_modules:
 - fastqc
 - fastp
 - bbduk
+- bowtie2
 
 sp: {}
 module_order:
@@ -18,6 +19,9 @@ module_order:
 - fastqc:
     name: FastQC (FastP Trim)
     path_filters: ELEMENT_CLEANUP_SE/SINGLE_END/FASTP_FASTQC/*/*_fastqc.zip
+- bowtie2:
+    name: Bowtie2 Host Removal
+    path_filters: ELEMENT_CLEANUP_SE/HOST_REMOVAL_SE/*.log
 
 - fastqc:
     name: FastQC (Raw_Reads)
@@ -31,3 +35,6 @@ module_order:
 - fastqc:
     name: FastQC (FastP Trim)
     path_filters: ELEMENT_CLEANUP_PE/PAIRED_END/FASTP_FASTQC/*/*_fastqc.zip
+- bowtie2:
+    name: Bowtie2 Host Removal
+    path_filters: ELEMENT_CLEANUP_PE/HOST_REMOVAL_SE/*.log
