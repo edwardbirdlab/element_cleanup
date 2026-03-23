@@ -35,7 +35,7 @@ process HOST_REMOVAL_SE {
     bowtie2 \\
         -p ${task.cpus} \\
         -x ${idx_base} \\
-        -1 ${r1} \\
+        -U ${r1} \\
         --very-sensitive \\
         2> ${sample}_bowtie2_spike.log \\
     | samtools view -b -f 12 -F 256 - \\
