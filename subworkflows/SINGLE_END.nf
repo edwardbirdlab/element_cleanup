@@ -56,7 +56,7 @@ workflow SINGLE_END {
         FASTP_FASTQC(ch_for_fastp_fastqc)
 
     emit:
-        clean_fqs = ch_for_fastp_fastqc
+        clean_fqs = FASTP.out.trim
 
 
 }
