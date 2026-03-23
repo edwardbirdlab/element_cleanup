@@ -5,7 +5,7 @@ Importing subworkflows
 */
 
 include { SINGLE_END as SINGLE_END } from '../subworkflows/SINGLE_END.nf'
-include { SPIKE_IN_REMOVAL         } from '../modules/spike_in_removal'
+include { HOST_REMOVAL_SE          } from '../modules/HOST_REMOVAL_SE'
 
 
 workflow ELEMENT_CLEANUP_SE {
