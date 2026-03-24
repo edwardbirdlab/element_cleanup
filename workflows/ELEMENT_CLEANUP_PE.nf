@@ -17,6 +17,6 @@ workflow ELEMENT_CLEANUP_PE {
         PAIRED_END(fastqs_short_raw)
 
         if (params.run_host_removal) {
-            HOST_REMOVAL_SE(PAIRED_END.out.clean_fqs, ch_bt2_index)
+            HOST_REMOVAL_PE(PAIRED_END.out.clean_fqs, ch_bt2_index)
         }
 }
