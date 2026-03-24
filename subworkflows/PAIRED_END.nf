@@ -55,5 +55,9 @@ workflow PAIRED_END {
         ch_for_fastp_fastqc = FASTP.out.trim.combine(ch_adapter_tsv)
         FASTP_FASTQC(ch_for_fastp_fastqc)
 
+    emit:
+        clean_fqs = FASTP.out.trim
+
+
 
 }

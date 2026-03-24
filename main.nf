@@ -48,7 +48,7 @@ workflow {
 
     if (params.workflow_opt == 'cleanup_pe') {
 
-        ELEMENT_CLEANUP_PE(ch_fastq)
+        ELEMENT_CLEANUP_PE(ch_fastq, ch_bt2_index)
 
         }
 

@@ -37,4 +37,4 @@ module_order:
     path_filters: ELEMENT_CLEANUP_PE/PAIRED_END/FASTP_FASTQC/*/*_fastqc.zip
 - bowtie2:
     name: Bowtie2 Host Removal
-    path_filters: ELEMENT_CLEANUP_PE/HOST_REMOVAL_SE/*.log
+    path_filters: ELEMENT_CLEANUP_PE/HOST_REMOVAL_PE/*.log
